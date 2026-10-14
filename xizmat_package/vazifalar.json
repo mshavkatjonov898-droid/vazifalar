@@ -1,0 +1,12 @@
+[
+    {
+        "matn": "non olish2",
+        "muhim": false,
+        "bajarildi": false
+    },
+    {
+        "matn": "non olish",
+        "muhim": true,
+        "bajarildi": true
+    }
+]
