@@ -1,5 +1,8 @@
+# xizmat.py — 🧠 Mantiqchi
 # import json
-# from model import Vazifa
+
+
+from model_package.model import Vazifa
 
 class Royxat:
     def __init__(self):
@@ -9,37 +12,67 @@ class Royxat:
         return len(self.vazifalar)
 
     def get_info(self):
-        return self.vazifalar
+        for i in self.vazifalar:
+            return f"#{len(self.vazifalar)} {i}"
 
     def qosh(self, matn, muhim=False):
         # Vazifa(matn, muhim) yaratib ro'yxatga qo'shing; yangi raqamni qaytaring: len(...) - 1
-        list_count = 0
+        vazifa = Vazifa(matn, muhim)
+        self.vazifalar.append(vazifa)
+        return f"✅ #{len(self.vazifalar)} qoshildi: {vazifa}"
 
-        if muhim is False:
-            self.vazifalar.append(f"✅ #{list_count} qo'shildi: [] {matn}")
-        else:
-            self.vazifalar.append(f"✅ #{list_count} qo'shildi: [ ] {matn} ⭐")
-        list_count += 1
 
     def bajar(self, idx):
         # v = self.vazifalar[idx]  (yo'q bo'lsa IndexError o'zi chiqadi)
         # v.bajarildi True bo'lsa → return False; aks holda v.bajar(); return True
-        v = self.vazifalar[idx]
-        if v in self.vazifalar:
-            pass
+        try:
+            v = self.vazifalar[idx]
+
+            if v.bajarildi is False:
+               v.bajar()
+               return f"✔️ #{idx} {v}"
+            else:
+                return "❌ Allaqachon bajarilgan"
+
+        except IndexError:
+            return "❌ Bunday vazifa yo'q"
+
+        # try:
+        #     v = self.vazifalar[idx]
+        #     if v.bajarildi:
+        #        return False
+        #     else:
+        #         v.bajar()
+        #         return True
+        #
+        # except IndexError:
+        #     print("❌ Bunday vazifa yo'q")
+
+
 
 
     def ochir(self, idx):
-        # del self.vazifalar[idx]
-        ...
+        del self.vazifalar[idx]
+        return f"🗑 #{idx} o'chirildi"
 
     def bajarilmaganlar(self):
         # [v for v in self.vazifalar if not v.bajarildi]
-        ...
-
+        print(f"⏳ Bajarilmagan: {len(self.vazifalar)} ta")
+        for i in self.vazifalar:
+            if not i.bajarildi:
+                print(f"{i}")
+            else:
+                return "Hozircha hama vazifalar bajarilgan"
+        return ""
 
 royxat = Royxat()
 
-print(royxat.qosh("github"))
-print(royxat.get_info())
-print(royxat.bajar(0))
+
+# Vazifa.bajar(vazifa1)
+print(royxat.qosh("non olish2", False))
+print(royxat.qosh("non olish", True))
+# print(royxat.bajar(0))
+# print(royxat.bajar(1))
+# print(royxat.ochir(0))
+print(royxat.bajarilmaganlar())
+# print(royxat.get_info())
