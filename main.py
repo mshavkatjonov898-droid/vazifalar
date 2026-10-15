@@ -1,5 +1,4 @@
 # main.py — 🖥 Interfeyschi
-import json
 
 def tanlovni_tekshir(matn, max_raqam):
     # matn = matn.strip(); raqam emas (isdigit) → return None
