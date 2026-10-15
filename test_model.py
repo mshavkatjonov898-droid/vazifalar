@@ -9,17 +9,19 @@ class VazifaTest(unittest.TestCase):
         self.assertFalse(Vazifa("Dars qilish").bajarildi)
 
     def test_bajar(self):
-        # v = Vazifa("Dars qilish"); v.bajar(); v.bajarildi → True
         v = Vazifa("Dars qilish")
-        self.assertEqual(v,v.bajar())
-        self.assertEqual(v,v.bajarildi)
+        v.bajar()
+        self.assertTrue(v.bajarildi)
 
     def test_bosh_matn(self):
         # with self.assertRaises(ValueError): Vazifa("   ")
         with self.assertRaises(ValueError):
-            Vazifa("")
+            Vazifa("   ")
 
     def test_str(self):
         self.assertEqual(str(Vazifa("Non olish",True)) ,"[ ] Non olish ⭐")
 
  # ⭐ bonus: test_str — str(Vazifa("Non olish", True)) == "[ ] Non olish ⭐"
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

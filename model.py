@@ -15,7 +15,7 @@ class Vazifa:
         self.bajarildi = True
 
     def __str__(self):
-        # bajarildi → "[x]", aks holda "[ ]"; keyin " " + matn; muhim bo'lsa oxiriga " ⭐"
+        # bajarildi → "[x]", aks holda "[ ]"; keyin " " + matn; muhim bo'lsa oxiriga "⭐"
         if self.bajarildi and self.muhim:
             return f"[x] {self.matn} ⭐"
         elif self.bajarildi and not self.muhim:
@@ -24,8 +24,3 @@ class Vazifa:
             return f"[ ] {self.matn} ⭐"
         else:
             return f"[ ] {self.matn}"
-
-
-# vazifa1 = Vazifa("Vazifa1", True)
-# Vazifa.bajar(vazifa1)
-# print(vazifa1)
