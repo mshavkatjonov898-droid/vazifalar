@@ -26,6 +26,6 @@ class Vazifa:
             print("[ ]", self.matn)
 
 
-vazifa1 = Vazifa("Vazifa1", True)
-Vazifa.bajar(vazifa1)
-print(vazifa1)
+# vazifa1 = Vazifa("Vazifa1", True)
+# Vazifa.bajar(vazifa1)
+# print(vazifa1)
