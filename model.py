@@ -17,13 +17,13 @@ class Vazifa:
     def __str__(self):
         # bajarildi → "[x]", aks holda "[ ]"; keyin " " + matn; muhim bo'lsa oxiriga " ⭐"
         if self.bajarildi and self.muhim:
-            print("[x]", self.matn, "⭐")
+            return f"[x] {self.matn} ⭐"
         elif self.bajarildi and not self.muhim:
-            print("[x]", self.matn)
+            return f"[x] {self.matn}"
         elif not self.bajarildi and self.muhim:
-            print("[ ]", self.matn, "⭐")
+            return f"[ ] {self.matn} ⭐"
         else:
-            print("[ ]", self.matn)
+            return f"[ ] {self.matn}"
 
 
 # vazifa1 = Vazifa("Vazifa1", True)
