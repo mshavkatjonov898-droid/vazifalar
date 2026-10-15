@@ -13,7 +13,9 @@ class Royxat:
 
     def get_info(self):
         for i in self.vazifalar:
-            return f"#{len(self.vazifalar)} {i}"
+            if len(self.vazifalar) != 0:
+                return f"#{len(self.vazifalar)} {i}"
+        return "(royxat bo'sh)"
 
     def qosh(self, matn, muhim=False):
         # Vazifa(matn, muhim) yaratib ro'yxatga qo'shing; yangi raqamni qaytaring: len(...) - 1
@@ -24,28 +26,28 @@ class Royxat:
     def bajar(self, idx):
         # v = self.vazifalar[idx]  (yo'q bo'lsa IndexError o'zi chiqadi)
         # v.bajarildi True bo'lsa → return False; aks holda v.bajar(); return True
-        try:
-            v = self.vazifalar[idx]
-
-            if v.bajarildi is False:
-                v.bajar()
-                return f"✔️ #{idx} {v}"
-            else:
-                return "❌ Allaqachon bajarilgan"
-
-        except IndexError:
-            return "❌ Bunday vazifa yo'q"
-
         # try:
         #     v = self.vazifalar[idx]
-        #     if v.bajarildi:
-        #        return False
-        #     else:
+        #
+        #     if v.bajarildi is False:
         #         v.bajar()
-        #         return True
+        #         return f"✔️ #{idx} {v}"
+        #     else:
+        #         return "❌ Allaqachon bajarilgan"
         #
         # except IndexError:
-        #     print("❌ Bunday vazifa yo'q")
+        #     return "❌ Bunday vazifa yo'q"
+
+        try:
+            v = self.vazifalar[idx]
+            if v.bajarildi:
+               return False
+            else:
+                v.bajar()
+                return True
+
+        except IndexError:
+            print("❌ Bunday vazifa yo'q")
 
     def ochir(self, idx):
         del self.vazifalar[idx]
@@ -53,10 +55,9 @@ class Royxat:
 
     def bajarilmaganlar(self):
         # [v for v in self.vazifalar if not v.bajarildi]
-        print(f"⏳ Bajarilmagan: {len(self.vazifalar)} ta")
         for i in self.vazifalar:
             if not i.bajarildi:
-                print(f"{i}")
+                return f"#{len(self.vazifalar)} {i}"
 
         return ""
 
@@ -82,20 +83,20 @@ class Royxat:
         except FileNotFoundError:
             return r
         # har d uchun: idx = r.qosh(d["matn"], d["muhim"]); d["bajarildi"] bo'lsa r.bajar(idx)
-        idx = r.qosh(data["matn"], data["muhim"])
-        r.bajar(idx)
-        return r
+        # idx = r.qosh(data["matn"], data["muhim"])
+        # r.bajar(idx)
+        # return r
 
 
-royxat = Royxat()
+# royxat = Royxat()
 
 # Vazifa.bajar(vazifa1)
-print(royxat.qosh("non olish", True))
-print(royxat.qosh("non olish2", False))
+# print(royxat.qosh("non olish", True))
+# print(royxat.qosh("non olish2", False))
 # print(royxat.bajar(0))
-print(royxat.bajar(1))
+# print(royxat.bajar(1))
 # print(royxat.ochir(0))
-print(royxat.bajarilmaganlar())
-royxat.saqla()
-royxat.saqla()
+# print(royxat.bajarilmaganlar())
+# royxat.saqla()
+# royxat.saqla()
 # print(royxat.get_info())
