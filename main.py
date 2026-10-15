@@ -4,15 +4,19 @@ def tanlovni_tekshir(matn, max_raqam):
     # matn = matn.strip(); raqam emas (isdigit) → return None
     # n = int(matn); 0 <= n <= max_raqam bo'lsa n, aks holda None
     matn = matn.strip()
+    if not matn.isdigit():
+        return None
     n = int(matn)
     if 0 <= n <= max_raqam:
         return n
-    else:
-        return None
+
+    return None
+
+
 
 def ha_yoq(matn):
     # matn.strip().lower() "h" yoki "ha" bo'lsa True, aks holda False
-    if matn.strip().lower() == "h":
+    if matn.strip().lower() == "h" or matn.strip().lower() == "ha":
         return True
     else:
         return False

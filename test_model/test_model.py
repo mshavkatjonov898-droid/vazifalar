@@ -1,31 +1,27 @@
-# model.py — 🧑‍✈️ Kapitan
-class Vazifa:
-    def __init__(self, matn, muhim=False):
-        # 1) matn.strip() == "" bo'lsa → raise ValueError("Matn bo'sh bo'lmasin")
-        # 2) self.matn = matn.strip()   self.muhim = muhim   self.bajarildi = False
-        self.matn = matn.strip()
-        self.muhim = muhim
-        self.bajarildi = False
+# test_model.py — 🧠 Mantiqchi yozadi, 🧑‍✈️ Kapitan kodini tekshiradi
+import unittest
+from model_package.model import Vazifa
 
-        match self.matn:
-            case "":
-                raise ValueError("Matn bo'sh bo'lmasin")
+class VazifaTest(unittest.TestCase):
 
-    def bajar(self):
-        self.bajarildi = True
+    def test_yangi_vazifa(self):
+        # Vazifa("Dars qilish").bajarildi → False (assertFalse)
+        self.assertFalse(Vazifa("Dars qilish").bajarildi)
 
-    def __str__(self):
-        # bajarildi → "[x]", aks holda "[ ]"; keyin " " + matn; muhim bo'lsa oxiriga " ⭐"
-        if self.bajarildi and self.muhim:
-            print("[x]", self.matn, "⭐")
-        elif self.bajarildi and not self.muhim:
-            print("[x]", self.matn)
-        elif not self.bajarildi and self.muhim:
-            print("[ ]", self.matn, "⭐")
-        else:
-            print("[ ]", self.matn)
+    def test_bajar(self):
+        v = Vazifa("Dars qilish")
+        v.bajar()
+        self.assertTrue(v.bajarildi)
 
+    def test_bosh_matn(self):
+        # with self.assertRaises(ValueError): Vazifa("   ")
+        with self.assertRaises(ValueError):
+            Vazifa("   ")
 
-# vazifa1 = Vazifa("Vazifa1", True)
-# Vazifa.bajar(vazifa1)
-# print(vazifa1)
+    def test_str(self):
+        self.assertEqual(str(Vazifa("Non olish",True)) ,"[ ] Non olish ⭐")
+
+ # ⭐ bonus: test_str — str(Vazifa("Non olish", True)) == "[ ] Non olish ⭐"
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
